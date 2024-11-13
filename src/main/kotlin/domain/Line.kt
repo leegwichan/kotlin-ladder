@@ -27,7 +27,6 @@ class Line(val directions: List<Direction>) {
                 }
                 line = line.notConnect()
             }
-            println(line.directions)
             return line
         }
     }

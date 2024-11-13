@@ -4,20 +4,19 @@ import kotlin.random.Random
 
 class Line(val directions: List<Direction>) {
 
-    fun connect(): Line {
+    private fun connect(): Line {
         return Line(directions.dropLast(1) + listOf(Direction.RIGHT, Direction.LEFT))
     }
 
-    fun notConnect(): Line {
+    private fun notConnect(): Line {
         return Line(directions + Direction.DOWN)
     }
 
-    fun isLeftNotConnected(): Boolean {
+    private fun isLeftNotConnected(): Boolean {
         return directions.last() == Direction.DOWN
     }
 
     companion object {
-
         fun createRandomLine(size: Int): Line {
             var line = Line(listOf(Direction.DOWN))
             while (line.directions.size < size) {
@@ -28,6 +27,7 @@ class Line(val directions: List<Direction>) {
                 }
                 line = line.notConnect()
             }
+            println(line.directions)
             return line
         }
     }

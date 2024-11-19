@@ -8,6 +8,6 @@ data class Name(val name: String) {
     }
 
     companion object {
-        private val MAX_NAME_LENGTH = 5;
+        private const val MAX_NAME_LENGTH = 5
     }
 }

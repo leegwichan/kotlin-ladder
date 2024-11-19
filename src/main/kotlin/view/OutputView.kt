@@ -1,6 +1,9 @@
 package ladder.view
 
 import ladder.domain.*
+import ladder.domain.ladder.Direction
+import ladder.domain.participant.Participant
+import ladder.domain.participant.Participants
 
 object OutputView {
 
@@ -11,17 +14,17 @@ object OutputView {
     fun printLadder(ladderGame: LadderGame) {
         println("\n실행결과\n")
 
-        printNames(ladderGame.names)
+        printNames(ladderGame.participants)
         ladderGame.ladder.lines.forEach { printLine(it) }
     }
 
-    private fun printNames(names: Names) {
-        val printedNames = names.names
+    private fun printNames(participants: Participants) {
+        val printedNames = participants.participants
             .joinToString(separator = NAME_DELIMITER) { toPrintedName(it) }
         println(printedNames)
     }
 
-    private fun toPrintedName(it: Name) = "%-5s".format(it.name)
+    private fun toPrintedName(it: Participant) = "%-5s".format(it.name)
 
     private fun printLine(line: Line) {
         val printedLine = line.directions

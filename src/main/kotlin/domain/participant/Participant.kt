@@ -1,6 +1,6 @@
-package ladder.domain
+package ladder.domain.participant
 
-data class Name(val name: String) {
+data class Participant(val name: String) {
 
     init {
         require(name.isNotBlank()) { "이름은 공백으로만 이루어 질 수 없습니다" }

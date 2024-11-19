@@ -1,4 +1,4 @@
-package ladder.domain
+package ladder.domain.ladder
 
 enum class Direction {
     LEFT,

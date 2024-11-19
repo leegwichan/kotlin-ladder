@@ -1,5 +1,6 @@
 package ladder.domain
 
+import ladder.domain.ladder.Direction
 import kotlin.random.Random
 
 class Line(val directions: List<Direction>) {

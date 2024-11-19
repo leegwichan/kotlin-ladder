@@ -1,4 +1,6 @@
-package ladder.domain
+package ladder.domain.ladder
+
+import ladder.domain.Line
 
 class Ladder(val lines: List<Line>) {
 

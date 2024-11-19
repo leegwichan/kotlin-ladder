@@ -1,7 +1,7 @@
-package domain
+package domain.ladder
 
 import io.kotest.matchers.shouldBe
-import ladder.domain.Ladder
+import ladder.domain.ladder.Ladder
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 

@@ -7,30 +7,39 @@ class Line(val directions: List<Direction>) {
     val width: Int
         get() = directions.size
 
-    private fun connect(): Line {
+    init {
+        require(directions.isNotEmpty()) { "한 줄의 방향들은 1개 이상 있어야 합니다" }
+    }
+
+    constructor(direction: Direction) : this(listOf(direction))
+
+    private fun canConnectRight(): Boolean {
+        return directions.last() == Direction.DOWN
+    }
+
+    private fun connectRight(): Line {
         return Line(directions.dropLast(1) + listOf(Direction.RIGHT, Direction.LEFT))
     }
 
-    private fun notConnect(): Line {
+    private fun notConnectRight(): Line {
         return Line(directions + Direction.DOWN)
-    }
-
-    private fun isLeftNotConnected(): Boolean {
-        return directions.last() == Direction.DOWN
     }
 
     companion object {
         fun createRandomLine(size: Int): Line {
-            var line = Line(listOf(Direction.DOWN))
-            while (line.directions.size < size) {
-                val randomBoolean = Random.nextBoolean()
-                if (randomBoolean && line.isLeftNotConnected()) {
-                    line = line.connect()
-                    continue
-                }
-                line = line.notConnect()
+            var line = Line(Direction.DOWN)
+            repeat(size - 1) {
+                line = connectLine(line)
             }
             return line
+        }
+
+        private fun connectLine(line: Line): Line {
+            val randomBoolean = Random.nextBoolean()
+            if (randomBoolean && line.canConnectRight()) {
+                return line.connectRight()
+            }
+            return line.notConnectRight()
         }
     }
 }

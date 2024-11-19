@@ -6,7 +6,7 @@ class Ladder(val lines: List<Line>) {
     }
 
     companion object {
-        fun createLadder(width: Int, height: Int): Ladder {
+        fun createRandomLadder(width: Int, height: Int): Ladder {
             val lines = List(height) { Line.createRandomLine(width) }
             return Ladder(lines)
         }

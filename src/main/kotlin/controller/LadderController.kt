@@ -12,7 +12,7 @@ class LadderController(private val inputView: InputView, private val outputView:
         val names = Names.createNames(inputNames)
 
         val height = inputView.inputLadderHeight()
-        val ladderGame = LadderGame.createRandomLadderGame(names, height)
+        val ladderGame = LadderGame.createLadderGame(names, height)
 
         outputView.printLadder(ladderGame)
     }

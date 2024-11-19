@@ -4,6 +4,9 @@ import kotlin.random.Random
 
 class Line(val directions: List<Direction>) {
 
+    val width: Int
+        get() = directions.size
+
     private fun connect(): Line {
         return Line(directions.dropLast(1) + listOf(Direction.RIGHT, Direction.LEFT))
     }

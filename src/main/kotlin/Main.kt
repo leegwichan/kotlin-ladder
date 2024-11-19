@@ -5,7 +5,7 @@ import ladder.view.InputView
 import ladder.view.OutputView
 
 fun main() {
-    val ladderController = LadderController(InputView(), OutputView())
+    val ladderController = LadderController(InputView, OutputView)
 
     ladderController.start()
 }

@@ -1,11 +1,13 @@
 package ladder.view
 
-import ladder.domain.Direction
-import ladder.domain.LadderGame
-import ladder.domain.Line
-import ladder.domain.Names
+import ladder.domain.*
 
-class OutputView {
+object OutputView {
+
+    private const val NAME_DELIMITER = " "
+    private const val EXIST_BRIDGE = "|-----"
+    private const val NOT_EXIST_BRIDGE = "|     "
+
     fun printLadder(ladderGame: LadderGame) {
         println("\n실행결과\n")
 
@@ -15,16 +17,15 @@ class OutputView {
 
     private fun printNames(names: Names) {
         val printedNames = names.names
-            .map { "%-5s".format(it.name) }
-            .joinToString(separator = NAME_DELIMITER)
+            .joinToString(separator = NAME_DELIMITER) { toPrintedName(it) }
         println(printedNames)
     }
 
+    private fun toPrintedName(it: Name) = "%-5s".format(it.name)
+
     private fun printLine(line: Line) {
         val printedLine = line.directions
-            .map { toPrintedBridge(it) }
-            .joinToString(separator = "")
-            .trim()
+            .joinToString(separator = "") { toPrintedBridge(it) }.trim()
         println(printedLine)
     }
 
@@ -33,11 +34,5 @@ class OutputView {
             return EXIST_BRIDGE
         }
         return NOT_EXIST_BRIDGE
-    }
-
-    companion object {
-        private const val NAME_DELIMITER = " "
-        private val EXIST_BRIDGE = "|-----"
-        private val NOT_EXIST_BRIDGE = "|     "
     }
 }

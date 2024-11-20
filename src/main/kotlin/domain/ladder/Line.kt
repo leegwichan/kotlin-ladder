@@ -1,6 +1,5 @@
-package ladder.domain
+package ladder.domain.ladder
 
-import ladder.domain.ladder.Direction
 import kotlin.random.Random
 
 class Line(val directions: List<Direction>) {
@@ -24,6 +23,10 @@ class Line(val directions: List<Direction>) {
 
     private fun notConnectRight(): Line {
         return Line(directions + Direction.DOWN)
+    }
+
+    fun findNextPosition(position: Int): Int {
+        return directions[position].next(position)
     }
 
     companion object {

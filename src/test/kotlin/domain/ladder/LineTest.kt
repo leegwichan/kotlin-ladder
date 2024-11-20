@@ -1,9 +1,12 @@
-package domain
+package domain.ladder
 
 import io.kotest.matchers.shouldBe
-import ladder.domain.Line
+import ladder.domain.ladder.Direction
+import ladder.domain.ladder.Line
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 
 class LineTest {
 
@@ -20,5 +23,15 @@ class LineTest {
         val line = Line.createRandomLine(width)
 
         line.width shouldBe width
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = ["0, 1", "1, 0", "2, 2"])
+    fun `해당 라인을 지날 때 다음 위치를 알 수 있다`(currentPosition: Int, expectedPosition: Int) {
+        val ladder = Line(listOf(Direction.RIGHT, Direction.LEFT, Direction.DOWN))
+
+        val actualPosition = ladder.findNextPosition(currentPosition)
+
+        actualPosition shouldBe expectedPosition
     }
 }

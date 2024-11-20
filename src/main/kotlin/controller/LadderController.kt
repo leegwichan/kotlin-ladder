@@ -10,7 +10,7 @@ class LadderController(private val inputView: InputView, private val outputView:
 
     fun start() {
         val inputNames = inputView.inputParticipantNames()
-        val participants = Participants.createNames(inputNames)
+        val participants = Participants.createByNames(inputNames)
 
         val height = inputView.inputLadderHeight()
         val ladderGame = LadderGame.createLadderGame(participants, Results(emptyList()), height)

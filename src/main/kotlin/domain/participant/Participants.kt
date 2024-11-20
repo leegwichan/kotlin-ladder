@@ -10,8 +10,14 @@ class Participants(val participants: List<Participant>) {
         require(participants.distinct().size == participants.size) { "참여자는 중복 될 수 없습니다" }
     }
 
+    fun findPosition(participantName: String): Int {
+        val position = participants.indexOfFirst { it.name == participantName }
+        require(position > -1) { "해당 참가자가 존재하지 않습니다" }
+        return position
+    }
+
     companion object {
-        fun createNames(names: List<String>): Participants {
+        fun createByNames(names: List<String>): Participants {
             val participants = names.map { Participant(it) }
             return Participants(participants)
         }

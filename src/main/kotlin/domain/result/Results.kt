@@ -1,6 +1,6 @@
 package ladder.domain.result
 
-class Results(val results: List<Result>) {
+class Results(private val results: List<Result>) {
 
     init {
         require(results.isNotEmpty()) { "실행 결과는 적어도 1개 이상 있어야 합니다" }
@@ -8,6 +8,10 @@ class Results(val results: List<Result>) {
 
     val size
         get() = results.size
+
+    fun getResultName(position: Int): String {
+        return results[position].name
+    }
 
     companion object {
 

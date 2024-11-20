@@ -19,8 +19,8 @@ object InputView {
         return readln().toIntOrNull() ?: throw IllegalArgumentException("숫자를 입력해야 합니다")
     }
 
-    fun inputRequestParticipant(): String {
+    fun inputRequestParticipant(): ResultRequest {
         println("\n결과를 보고 싶은 사람은?")
-        return readln()
+        return ResultRequest(readln())
     }
 }

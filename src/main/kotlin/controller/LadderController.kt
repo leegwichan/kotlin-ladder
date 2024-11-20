@@ -29,13 +29,14 @@ class LadderController(private val inputView: InputView, private val outputView:
     }
 
     private fun showResult(ladderGame: LadderGame) {
-        val input = inputView.inputRequestParticipant()
-        if (input == "all") {
+        val resultRequest = inputView.inputRequestParticipant()
+
+        if (resultRequest.isRequestTotalResult()) {
             val totalResult = ladderGame.findTotalResult()
             outputView.printTotalResult(totalResult)
             return
         }
-        val result = ladderGame.findResult(input)
+        val result = ladderGame.findResult(resultRequest.input)
         outputView.printResult(result)
     }
 }

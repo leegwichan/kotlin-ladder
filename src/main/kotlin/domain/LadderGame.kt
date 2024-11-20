@@ -11,6 +11,16 @@ class LadderGame(val participants: Participants, val results: Results, val ladde
         require(participants.size == ladder.width) { "참여자 수와 사다리 가로 길이는 같아야 합니다" }
     }
 
+    fun findResult(participantName: String): String {
+        val participantPosition = participants.findPosition(participantName)
+        val resultPosition = ladder.findResultPosition(participantPosition)
+        return results.getResultName(resultPosition)
+    }
+
+    fun findTotalResult(): Map<String, String> {
+        return participants.names.associateWith { findResult(it) }
+    }
+
     companion object {
 
         fun createLadderGame(participants: Participants, results: Results, height: Int): LadderGame {

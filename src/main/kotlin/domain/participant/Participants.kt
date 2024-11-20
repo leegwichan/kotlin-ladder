@@ -4,6 +4,8 @@ class Participants(val participants: List<Participant>) {
 
     val size: Int
         get() = participants.size
+    val names: List<String>
+        get() = participants.map { it.name }
 
     init {
         require(participants.isNotEmpty()) { "참여자는 1명 이상 있어야 합니다" }

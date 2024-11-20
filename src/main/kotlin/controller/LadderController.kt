@@ -9,12 +9,33 @@ import ladder.view.OutputView
 class LadderController(private val inputView: InputView, private val outputView: OutputView) {
 
     fun start() {
-        val inputNames = inputView.inputParticipantNames()
-        val participants = Participants.createByNames(inputNames)
+        val ladderGame = inputLadderGame()
+        outputView.printLadder(ladderGame)
+
+        while (true) {
+            showResult(ladderGame)
+        }
+    }
+
+    private fun inputLadderGame(): LadderGame {
+        val participantNames = inputView.inputParticipantNames()
+        val participants = Participants.createByNames(participantNames)
+
+        val resultNames = inputView.inputResultNames()
+        val results = Results.createResults(resultNames)
 
         val height = inputView.inputLadderHeight()
-        val ladderGame = LadderGame.createLadderGame(participants, Results(emptyList()), height)
+        return LadderGame.createLadderGame(participants, results, height)
+    }
 
-        outputView.printLadder(ladderGame)
+    private fun showResult(ladderGame: LadderGame) {
+        val input = inputView.inputRequestParticipant()
+        if (input == "all") {
+            val totalResult = ladderGame.findTotalResult()
+            outputView.printTotalResult(totalResult)
+            return
+        }
+        val result = ladderGame.findResult(input)
+        outputView.printResult(result)
     }
 }
